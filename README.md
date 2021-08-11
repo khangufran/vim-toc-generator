@@ -9,7 +9,7 @@ g++ main.cpp -o gen-toc
 ```
 For linux users, you can put gen-toc binary in /usr/local/bin  by running:
 ```
-sudo mv gen-toc /usr/local/bin
+sudo mv gen-toc /usr/local/bin/
 ```
 For windows and mac, put it in folder which is added in PATH variable
 
@@ -17,8 +17,8 @@ For windows and mac, put it in folder which is added in PATH variable
 ```
 gen-toc <filename>
 ```
-This command will generate two files: tags and toc_<filename>.txt.
-You can then open toc and press Ctrl+] to jump straight to corresponding heading in <filename>. Press Ctrl+O to jump back.
+This command will generate two files: tags and toc_filename.txt.
+You can then open toc and press Ctrl+] to jump straight to corresponding heading in main file. Press Ctrl+O to jump back.
 
 ## Notes
 - You can change heading identifier by changing heading_identifier global variable in main.cpp
