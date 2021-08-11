@@ -4,7 +4,6 @@
 #include<string>
 #include<algorithm>
 #include<fstream>
-using namespace std;
 
 std::string heading_identifier = "==[";
 
@@ -30,7 +29,7 @@ std::string generate_tag_name(std::string heading) {
 }
 
 int generate_toc(const char* in_file) {
-    std::ofstream toc(toc_filename(in_file),ios_base::out);
+    std::ofstream toc(toc_filename(in_file),std::ios_base::out);
 
     std::string first_line = "|=" + std::string(86,'-') + "=|"+'\n';
     std::string second_line_text = std::string("Table of contents for ") + in_file;
@@ -41,20 +40,20 @@ int generate_toc(const char* in_file) {
     toc << first_line << second_line << first_line << "\n\n";
     toc << "Table of Contents for " << in_file << "\n\n";
 
-    std::ifstream in(in_file,ios_base::in);
-    std::ofstream tags("tags",ios_base::out);
-    std::map<string,string> tag_map;
+    std::ifstream in(in_file,std::ios_base::in);
+    std::ofstream tags("tags",std::ios_base::out);
+    std::map<std::string,std::string> tag_map;
     std::string line;
     int toc_heading_number = 1;
     while(getline(in,line)) {
 	if(line.find(heading_identifier + " ") == 0) {
-	    string heading(line.begin()+heading_identifier.size()+1,line.end());
-	    string tag_name = generate_tag_name(heading);
+	    std::string heading(line.begin()+heading_identifier.size()+1,line.end());
+	    std::string tag_name = generate_tag_name(heading);
 	    toc << toc_heading_number++ <<". "<< tag_name << '\n';
 	    tag_map[tag_name] = heading;
 	}
     }
-    map<string,string>::const_iterator iter = tag_map.begin();
+    std::map<std::string,std::string>::const_iterator iter = tag_map.begin();
     while(iter != tag_map.end()) {
 	tags << iter->first << '\t' << "./" << in_file << '\t' << "/" << iter->second << '\n';
 	iter++;
